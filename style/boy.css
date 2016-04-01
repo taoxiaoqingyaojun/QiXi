@@ -63,13 +63,23 @@
 
 	-webkit-animation-name:boy-slow;
 	-webkit-animation-duration: 950ms;
-	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-iteration-count:21;
 	-webkit-animation-timing-function:steps(1,start);
 
 	-moz-animation-name:boy-slow;
 	-moz-animation-duration: 950ms;
-	-moz-animation-iteration-count:infinite;
+	-moz-animation-iteration-count:21;
 	-moz-animation-timing-function:steps(1,start);
+}
+
+/* animation动画的暂定 */
+.boyPasueWalk{
+
+	-webkit-animation-name:boy-slow;
+	-webkit-animation-play-state: paused;	
+
+	-moz-animation-name:boy-slow;
+	-moz-animation-play-state: paused;
 }
 
 

@@ -2,12 +2,13 @@
 
 module.exports = function(){
 	var container = $('#content');
-
+	var width = container.width();
+    var boy = $('#boy');
 var element = container.find(':first');  //就是content-wrap//相对定位
 
 	//首先我们调整小男孩的位置
 
-var boy = $('#boy');
+
 
 //写个通用的通过类名来获取坐标值
 
@@ -50,7 +51,7 @@ function boyRun(callback){
 
 }
 
-boyRun(function(){
+/*boyRun(function(){
 
 	element.css({
 		'transition-delay':'10s',
@@ -59,7 +60,7 @@ boyRun(function(){
 		'transform':'translate3d(' +(-(width * 2)) +'px,0px,0px)'
 	})
 
-});
+});*/
 };
 
 

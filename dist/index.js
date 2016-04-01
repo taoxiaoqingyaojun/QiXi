@@ -44,56 +44,70 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(1)();
+	/* WEBPACK VAR INJECTION */(function($) {__webpack_require__(2)();
 	__webpack_require__(3)();
+	var page1 = __webpack_require__(4);
+	var page2 = __webpack_require__(6);
+	var boys = __webpack_require__(5);
 
+	$('.baidong').click(function(){
+
+		boys.boyStartVibrate();
+	})
+
+	$('.zanting').click(function(){
+
+		boys.boyPasueVibrate();
+	})
+
+	$('.chongxing').click(function(){
+		boys.boyRestartVibrate();
+	})
+
+	$('.walk').click(function(){
+
+		boys.boyStartRun('10s');
+	})
+
+	$('.gundong').click(function(){
+
+			page1.pageScroll(0,'10s',1);
+	})
+
+	/*boys.boyStartVibrate();
+	boys.boyStartRun('10s');
+	page1.pageScroll('10s','10s',1).then(function(){
+
+			window.alert("我是姚俊");
+
+	});*/
+
+	boys.boyStartVibrate();
+
+	boys.boyStartRun('10s',0);
+
+	/*	page1.pageScrollAnimate().then(function(){
+
+
+	});
+	*/
+
+	page1.pageScroll(0,0,1);
+
+
+
+	$('.sun').addClass('sunRun');
+
+	page2.cloudRun();
+
+
+
+
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {module.exports = function(){
-
-				var container = $('#content');
-
-				var element = container.find(':first');  //就是content-wrap//相对定位
-
-
-				var slides = element.find("li");
-
-
-				var width = container.width();
-				var height = container.height();
-
-				element.css({
-					width:(slides.length * width) + 'px',
-					height:height + 'px'
-
-				});
-
-				//设置每一个页面li的宽度
-				$.each(slides,function(index){
-
-						var slide = slides.eq(index);
-
-						slide.css({
-							width:width + 'px',
-							height: height + 'px'
-						});
-				});
-
-	};
-
-
-
-
-
-
-
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ },
-/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -9941,6 +9955,50 @@
 
 
 /***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {module.exports = function(){
+
+				var container = $('#content');
+
+				var element = container.find(':first');  //就是content-wrap//相对定位
+
+
+				var slides = element.find("li");
+
+
+				var width = container.width();
+				var height = container.height();
+
+				element.css({
+					width:(slides.length * width) + 'px',
+					height:height + 'px'
+
+				});
+
+				//设置每一个页面li的宽度
+				$.each(slides,function(index){
+
+						var slide = slides.eq(index);
+
+						slide.css({
+							width:width + 'px',
+							height: height + 'px'
+						});
+				});
+
+	};
+
+
+
+
+
+
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -9948,12 +10006,13 @@
 
 	module.exports = function(){
 		var container = $('#content');
-
+		var width = container.width();
+	    var boy = $('#boy');
 	var element = container.find(':first');  //就是content-wrap//相对定位
 
 		//首先我们调整小男孩的位置
 
-	var boy = $('#boy');
+
 
 	//写个通用的通过类名来获取坐标值
 
@@ -9996,7 +10055,7 @@
 
 	}
 
-	boyRun(function(){
+	/*boyRun(function(){
 
 		element.css({
 			'transition-delay':'10s',
@@ -10005,7 +10064,7 @@
 			'transform':'translate3d(' +(-(width * 2)) +'px,0px,0px)'
 		})
 
-	});
+	});*/
 	};
 
 
@@ -10025,7 +10084,149 @@
 
 
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {var container = $('#content');
+	var element = container.find(':first');  //就是content-wrap//相对定位
+	var width = element.children().width();
+
+	var page1 ={
+
+			pageScroll:function(delayTime,durationTime,pageNum){
+
+				var dtd = $.Deferred(); //生成deferred对象
+
+			element.css({
+			'transition-delay':delayTime,
+			'transition-timing-function':'linear',
+			'transition-duration':durationTime,
+			'transform':'translate3d(' +(-(width * pageNum)) +'px,0px,0px)'
+			});
+
+			
+			return dtd;
+		},
+
+		pageScrollAnimate:function(){
+
+			var dtd = $.Deferred();
+			element.animate({
+				left:(-width)
+			},10000,function(){
+				dtd.resolve();
+			})
+
+			return dtd;
+		}
+
+	}
+
+	module.exports = page1;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {
+	var boy = $('#boy');
+	//页面可视区域
+	var visualWidth = $('#content').width();
+	var visualHeight = $('#content').height();
+	var boys = {
+
+		/*根据方向和相应的比例来计算移动的距离*/
+		calculateDist:function(direction,proportion){
+
+			return(direction == "x" ? visualWidth : visualHeight) * proportion;
+
+		},
+
+		/**
+		 * [boyStartRun description]
+		 * @return {[type]} [description]
+		 * direction:让小男孩水平走起来
+		 */
+		boyStartRun:function(time,delayTime){
+			boy.css({
+
+				'transition-property':'left',
+				'transition-duration':time,
+				'transition-delay':delayTime,
+				'transition-timing-function':'linear',
+				'-moz-transition-property':'left',
+				'-moz-transition-duration':time,
+				'-moz-transition-delay':delayTime,
+				'-moz-transition-timing-function':'linear',
+				'-webkit-transition-property':'left',
+				'-webkit-transition-duration':time,
+				'-webkit-transition-delay':delayTime,
+				'-webkit-transition-timing-function':'linear',
+				'-o-transition-property':'left',
+				'-o-transition-duratin':time,
+				'-o-transition-delay':delayTime,
+				'-o-transition-timing-function':'linear'
+			})
+			boy.css({
+				left:this.calculateDist('x',0.5)
+			})
+		},
+		/*男孩开始摆动*/
+		boyStartVibrate:function(){
+
+			boy.addClass('slowWalk');
+		},
+
+		/*男孩暂定摆动*/
+		boyPasueVibrate:function(){
+
+			boy.addClass('boyPasueWalk');
+		},
+
+		/*男孩重新摆动*/
+		boyRestartVibrate:function(){
+
+			boy.removeClass('boyPasueWalk');
+		},
+
+		boyTestDeferred:function(){
+
+			var dfdPlay =$.Deferred();
+
+			/*deferred的用法*/
+			boy.animate({
+				left:500
+			},1000,function(){
+				
+			})
+
+				return dfdPlay;
+		}
+	}
+
+	module.exports = boys;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {
+	var page2 = {
+
+		cloudRun:function(){
+
+			$('.cloud2').addClass('cloudRun');
+			$('.cloud1').addClass('cloudRun');
+		}
+	}
+
+	module.exports = page2;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }
 /******/ ]);
