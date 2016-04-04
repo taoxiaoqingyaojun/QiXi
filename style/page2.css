@@ -127,3 +127,42 @@
     background: url('../imgs/door-right.png');
     background-size: 100% 100%;
 }
+
+.bird{
+
+	width: 6%;
+	height: 50%;
+	position: absolute;
+	left:90%;
+	top:8%;
+	background-image: url('../imgs/bird.png');
+	background-position: -182px 0px; 
+	background-repeat: no-repeat;
+}
+
+
+@-webkit-keyframes birdFly{
+
+	
+	0% { 
+		background-position: -182px 0px;
+	 }
+    50% {
+    	background-position: 0px 0px;
+    }
+    75% {
+    	background-position: -91px 0px;
+    }
+    100% {
+    	background-position: -182px 0px;
+    }
+
+}
+
+.birdFly{
+
+	-webkit-animation-name:birdFly;
+	-webkit-animation-duration:950ms;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:step-start;
+}

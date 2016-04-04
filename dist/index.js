@@ -84,6 +84,7 @@
 
 	boys.boyStartVibrate();
 
+
 	boys.boyStartRun('10s',0);
 
 	/*	page1.pageScrollAnimate().then(function(){
@@ -92,7 +93,7 @@
 	});
 	*/
 
-	page1.pageScroll(0,0,1);
+	page1.pageScroll(0,0,2);
 
 
 
@@ -100,8 +101,9 @@
 
 	page2.cloudRun();
 
+	/*setTimeout(function(){
 
-	page2.openLeftDoor().then(function(){
+		page2.openLeftDoor().then(function(){
 
 		page2.closeLeftDoor();
 	});
@@ -109,6 +111,42 @@
 
 		page2.closeRightDoor();
 	});
+
+	},10000);*/
+
+	page2.openDoorByDelayTime(10000).then(function(){
+
+			$('#boy').removeClass('slowWalk');
+			$('#boy').addClass('boySmall');
+	});
+
+	setTimeout(function(){
+
+		$('#boy').removeClass('boySmall');
+		$('#boy').addClass('boyBig');
+	},20000);
+
+	setTimeout(function(){
+		$('#boy').removeClass('boyBig');
+		$('#boy').addClass('slowWalkFlower');
+		page2.closeDoorByDelayTime();
+	},25000)
+
+	$('.bird').addClass('birdFly');
+
+	$('.bird').animate({
+		left:'20%'
+	},20000,function(){
+
+	})
+
+
+
+
+
+
+
+
 
 
 
@@ -10145,6 +10183,7 @@
 	/* WEBPACK VAR INJECTION */(function($) {
 	var page2 = {
 
+
 		cloudRun:function(){
 
 			$('.cloud2').addClass('cloudRun');
@@ -10173,7 +10212,7 @@
 
 			$('.door-left').animate({
 				left:'0%'
-			},5000,function(){
+			},2000,function(){
 				dtd.resolve();
 			})
 
@@ -10199,13 +10238,58 @@
 			var dtd = $.Deferred();
 			$('.door-right').animate({
 				left:'50%'
-			},5000,function(){
+			},2000,function(){
 
 				dtd.resolve();
 			})
 
 			return dtd;
+		},
+		/*按延迟时间开门*/
+		openDoorByDelayTime:function(delayTime){
+
+			var dtd = $.Deferred();
+			var that = this;
+
+			setTimeout(function(){
+
+				that.openRightDoor();
+				that.openLeftDoor().then(function(){
+
+					dtd.resolve();
+				});
+
+			},delayTime);
+
+			return dtd;
+		},
+
+		/*按延时关门*/
+		closeDoorByDelayTime:function(){
+
+			var dtd = $.Deferred();
+			var that = this;
+
+				that.closeRightDoor();
+				that.closeLeftDoor().then(function(){
+
+					dtd.resolve();
+				})
+			return dtd;
+		},
+
+		/*小男孩走进门里*/
+		toDoor:function(){
+
+				/*先得到门的左边的偏移量*/
+				var shopOffset =  $('.shop').offset();
+				var shopLeft = shopOffset.left;
+				var boyOffset = $('#boy').offset();
+				var boyLeft = boyOffset.left;
+
+
 		}
+
 	}
 
 	module.exports = page2;

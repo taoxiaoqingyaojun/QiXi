@@ -58,17 +58,61 @@
 }
 
 
+@-webkit-keyframes boy-smalls{
+
+	from{
+		transform:scale(1,1);
+		opacity: 1;
+
+	}
+	to{
+		transform:scale(0.3,0.3);
+		opacity: 0;
+	}
+}
+
+.boySmall{
+
+	-webkit-animation-name:boy-smalls;
+	-webkit-animation-duration:5000ms;
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-timing-function:linear;
+}
+
+@-webkit-keyframes boy-big{
+
+	from{
+		transform:scale(0.3,0.3);
+		opacity: 0;
+		background-position: -302px -0px;
+	}
+	to{
+		transform:scale(1,1);
+		opacity: 1;
+		background-position: -302px -0px;
+	}
+}
+
+.boyBig{
+		
+	-webkit-animation-name:boy-big;
+	-webkit-animation-duration:5000ms;
+	-webkit-animation-iteration-count:1;
+	-webkit-animation-timing-function:linear;
+
+}
+
 /* animation动画的执行 */
 .slowWalk{
 
 	-webkit-animation-name:boy-slow;
 	-webkit-animation-duration: 950ms;
-	-webkit-animation-iteration-count:21;
+	-webkit-animation-iteration-count:infinite;
 	-webkit-animation-timing-function:steps(1,start);
 
 	-moz-animation-name:boy-slow;
 	-moz-animation-duration: 950ms;
-	-moz-animation-iteration-count:21;
+	-moz-animation-iteration-count:infinite;
 	-moz-animation-timing-function:steps(1,start);
 }
 
@@ -96,5 +140,80 @@
 	-o-transition:left 10s;
 	-o-transition-timing-function:linear;
 
+}
+
+
+/* 兼容opera浏览器的 */
+@-o-keyframes boyFlower-slow{
+
+	0%{
+		background-position: -302px -0px;
+	}
+	25%{
+		background-position: -753px 0px;
+	}
+	50%{
+		background-position: -453px -0px;
+	}
+	75%{
+		background-position: -904px -0px;
+	}
+	100%{
+		background-position: -302px -0px;
+	}
+}
+
+/* 兼容chrom safrair浏览器的 */
+@-webkit-keyframes boyFlower-slow{
+
+	0%{
+		background-position: -302px -0px;
+	}
+	25%{
+		background-position: -753px 0px;
+	}
+	50%{
+		background-position: -453px -0px;
+	}
+	75%{
+		background-position: -904px -0px;
+	}
+	100%{
+		background-position: -302px -0px;
+	}
+}
+
+/* 兼容火狐浏览器的 */
+@-moz-keyframes boyFlower-slow{
+
+	0%{
+		background-position: -302px -0px;
+	}
+	25%{
+		background-position: -753px 0px;
+	}
+	50%{
+		background-position: -453px -0px;
+	}
+	75%{
+		background-position: -904px -0px;
+	}
+	100%{
+		background-position: -302px -0px;
+	}
+}
+
+/* animation动画的执行 */
+.slowWalkFlower{
+
+	-webkit-animation-name:boyFlower-slow;
+	-webkit-animation-duration: 950ms;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:steps(1,start);
+
+	-moz-animation-name:boy-slow;
+	-moz-animation-duration: 950ms;
+	-moz-animation-iteration-count:infinite;
+	-moz-animation-timing-function:steps(1,start);
 }
 	
