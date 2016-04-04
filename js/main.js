@@ -55,5 +55,15 @@ $('.sun').addClass('sunRun');
 page2.cloudRun();
 
 
+page2.openLeftDoor().then(function(){
+
+	page2.closeLeftDoor();
+});
+page2.openRightDoor().then(function(){
+
+	page2.closeRightDoor();
+});
+
+
 
 

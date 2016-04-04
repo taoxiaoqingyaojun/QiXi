@@ -98,28 +98,32 @@
 	-o-animation-direction:alternate;
 }
 
-.door-left{
-		
-
-		width:6.5%;
-		height: 23.5%;
-		background-image: url('../imgs/door-left.png');
-		background-repeat: no-repeat;
-		position: absolute;
-		left:52.2%;
-		top:51.1%;
-
+.shop{
+	position: absolute;
+    width: 12.8%;
+    top: 51.2%;
+    height: 23.5%;
+    overflow: hidden;
+    left: 52%;
+    background-color: #ddd;
 }
 
-.door-right{
-		
+.door-left,
+.door-right {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+}
 
-		width:6.5%;
-		height: 23.5%;
-		background-image: url('../imgs/door-right.png');
-		background-repeat: no-repeat;
-		position: absolute;
-		left:58.675%;
-		top:51.1%;
 
+.door-left {
+    left: 0%;
+    background: url('../imgs/door-left.png');
+    background-size: 100% 100%;
+}
+
+.door-right {
+    left: 50%;
+    background: url('../imgs/door-right.png');
+    background-size: 100% 100%;
 }

@@ -47,8 +47,8 @@
 	/* WEBPACK VAR INJECTION */(function($) {__webpack_require__(2)();
 	__webpack_require__(3)();
 	var page1 = __webpack_require__(4);
-	var page2 = __webpack_require__(6);
-	var boys = __webpack_require__(5);
+	var page2 = __webpack_require__(5);
+	var boys = __webpack_require__(6);
 
 	$('.baidong').click(function(){
 
@@ -99,6 +99,16 @@
 	$('.sun').addClass('sunRun');
 
 	page2.cloudRun();
+
+
+	page2.openLeftDoor().then(function(){
+
+		page2.closeLeftDoor();
+	});
+	page2.openRightDoor().then(function(){
+
+		page2.closeRightDoor();
+	});
 
 
 
@@ -10133,6 +10143,79 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {
+	var page2 = {
+
+		cloudRun:function(){
+
+			$('.cloud2').addClass('cloudRun');
+			$('.cloud1').addClass('cloudRun');
+		},
+
+		/*开左边门*/
+		openLeftDoor:function(){
+
+			var dtd = $.Deferred();
+
+			$('.door-left').animate({
+				left:'-50%'
+			},5000,function(){
+
+				dtd.resolve();
+			});
+
+			return dtd;
+		},
+
+		/*关左边的们*/
+		closeLeftDoor:function(){
+
+			var dtd = $.Deferred();
+
+			$('.door-left').animate({
+				left:'0%'
+			},5000,function(){
+				dtd.resolve();
+			})
+
+			return dtd;
+		},
+
+		/*开右边的们*/
+		openRightDoor:function(){
+			var dtd = $.Deferred();
+			$('.door-right').animate({
+				left:'100%'
+			},5000,function(){
+
+					dtd.resolve();
+			})
+
+			return dtd;
+		},
+
+		/*关右边的门*/
+		closeRightDoor:function(){
+
+			var dtd = $.Deferred();
+			$('.door-right').animate({
+				left:'50%'
+			},5000,function(){
+
+				dtd.resolve();
+			})
+
+			return dtd;
+		}
+	}
+
+	module.exports = page2;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {
 	var boy = $('#boy');
 	//页面可视区域
 	var visualWidth = $('#content').width();
@@ -10209,23 +10292,6 @@
 	}
 
 	module.exports = boys;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function($) {
-	var page2 = {
-
-		cloudRun:function(){
-
-			$('.cloud2').addClass('cloudRun');
-			$('.cloud1').addClass('cloudRun');
-		}
-	}
-
-	module.exports = page2;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }
