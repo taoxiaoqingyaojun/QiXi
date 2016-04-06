@@ -2,6 +2,7 @@ require('./frame')();
 require('./boy')();
 var page1 = require('./page1');
 var page2 = require('./page2');
+var page3 = require('./page3');
 var boys = require('./boys');
 
 $('.baidong').click(function(){
@@ -41,13 +42,14 @@ boys.boyStartVibrate();
 
 boys.boyStartRun('10s',0);
 
-/*	page1.pageScrollAnimate().then(function(){
+	page1.pageScrollAnimate(24000,1000).then(function(){
 
 
 });
-*/
 
-page1.pageScroll(0,0,2);
+
+page1.pageScroll('10s','10s',1);
+
 
 
 
@@ -68,7 +70,7 @@ page2.openRightDoor().then(function(){
 
 },10000);*/
 
-page2.openDoorByDelayTime(10000).then(function(){
+page2.openDoorByDelayTime(20000).then(function(){
 
 		$('#boy').removeClass('slowWalk');
 		$('#boy').addClass('boySmall');
@@ -78,21 +80,30 @@ setTimeout(function(){
 
 	$('#boy').removeClass('boySmall');
 	$('#boy').addClass('boyBig');
-},20000);
+},30000);
 
 setTimeout(function(){
 	$('#boy').removeClass('boyBig');
 	$('#boy').addClass('slowWalkFlower');
 	page2.closeDoorByDelayTime();
-},25000)
+},35000)
 
 $('.bird').addClass('birdFly');
 
 $('.bird').animate({
-	left:'20%'
-},20000,function(){
+	left:'-20%'
+},30000,function(){
 
 })
+
+/*控制水的流动*/
+page3.waterFlow();
+
+/*小男孩垂直走动*/
+boys.boyStartVerticalRun(5000,40000)
+
+
+
 
 
 

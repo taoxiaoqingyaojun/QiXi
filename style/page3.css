@@ -64,3 +64,26 @@
 	left:33%;
 	top:90%;
 }
+
+
+.waterFlow{
+
+	-webkit-animation-name:water-flow;
+	-webkit-animation-duration:5000ms;
+	-webkit-animation-direction:alternate;
+	-webkit-animation-timing-function:linear;
+	-webkit-animation-iteration-count:infinite;
+}
+
+
+/* 控制水的流动性 */
+
+@-webkit-keyframes water-flow{
+
+	from{
+		transform:translate(25%,0);
+	}
+	to{
+		transform:translate(15%,0);
+	}
+}

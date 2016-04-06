@@ -48,7 +48,8 @@
 	__webpack_require__(3)();
 	var page1 = __webpack_require__(4);
 	var page2 = __webpack_require__(5);
-	var boys = __webpack_require__(6);
+	var page3 = __webpack_require__(6);
+	var boys = __webpack_require__(7);
 
 	$('.baidong').click(function(){
 
@@ -87,13 +88,14 @@
 
 	boys.boyStartRun('10s',0);
 
-	/*	page1.pageScrollAnimate().then(function(){
+		page1.pageScrollAnimate(24000,1000).then(function(){
 
 
 	});
-	*/
 
-	page1.pageScroll(0,0,2);
+
+	page1.pageScroll('10s','10s',1);
+
 
 
 
@@ -114,7 +116,7 @@
 
 	},10000);*/
 
-	page2.openDoorByDelayTime(10000).then(function(){
+	page2.openDoorByDelayTime(20000).then(function(){
 
 			$('#boy').removeClass('slowWalk');
 			$('#boy').addClass('boySmall');
@@ -124,21 +126,30 @@
 
 		$('#boy').removeClass('boySmall');
 		$('#boy').addClass('boyBig');
-	},20000);
+	},30000);
 
 	setTimeout(function(){
 		$('#boy').removeClass('boyBig');
 		$('#boy').addClass('slowWalkFlower');
 		page2.closeDoorByDelayTime();
-	},25000)
+	},35000)
 
 	$('.bird').addClass('birdFly');
 
 	$('.bird').animate({
-		left:'20%'
-	},20000,function(){
+		left:'-20%'
+	},30000,function(){
 
 	})
+
+	/*控制水的流动*/
+	page3.waterFlow();
+
+	/*小男孩垂直走动*/
+	boys.boyStartVerticalRun(5000,40000)
+
+
+
 
 
 
@@ -10144,6 +10155,7 @@
 
 	var page1 ={
 
+			/*通过css来实现换页*/
 			pageScroll:function(delayTime,durationTime,pageNum){
 
 				var dtd = $.Deferred(); //生成deferred对象
@@ -10159,15 +10171,20 @@
 			return dtd;
 		},
 
-		pageScrollAnimate:function(){
+		/*通过jquery来实现换页*/
+		pageScrollAnimate:function(delayTime,time){
 
 			var dtd = $.Deferred();
-			element.animate({
-				left:(-width)
-			},10000,function(){
-				dtd.resolve();
-			})
 
+			setTimeout(function(){
+
+					element.animate({
+					left:(-width)
+				},time,function(){
+					dtd.resolve();
+				})
+			},delayTime);
+			
 			return dtd;
 		}
 
@@ -10299,6 +10316,24 @@
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/* WEBPACK VAR INJECTION */(function($) {var page3={
+
+		waterFlow:function(){
+
+			$('.water4').addClass('waterFlow');
+			$('.water1').addClass('waterFlow');
+			$('.water2').addClass('waterFlow');
+			$('.water3').addClass('waterFlow');
+		}
+	}
+
+	module.exports = page3;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function($) {
 	var boy = $('#boy');
 	//页面可视区域
@@ -10341,6 +10376,26 @@
 			boy.css({
 				left:this.calculateDist('x',0.5)
 			})
+		},
+		/*让小男孩垂直走起来*/
+		boyStartVerticalRun:function(time,delayTime){
+
+			var dtd = $.Deferred();
+
+
+			setTimeout(function(){
+
+				boy.animate({
+					top:'23%'
+				},time,function(){
+
+					dtd.resolve();
+				})
+
+			},delayTime);
+
+			return dtd;
+			
 		},
 		/*男孩开始摆动*/
 		boyStartVibrate:function(){

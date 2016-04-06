@@ -4,6 +4,7 @@ var width = element.children().width();
 
 var page1 ={
 
+		/*通过css来实现换页*/
 		pageScroll:function(delayTime,durationTime,pageNum){
 
 			var dtd = $.Deferred(); //生成deferred对象
@@ -19,15 +20,20 @@ var page1 ={
 		return dtd;
 	},
 
-	pageScrollAnimate:function(){
+	/*通过jquery来实现换页*/
+	pageScrollAnimate:function(delayTime,time){
 
 		var dtd = $.Deferred();
-		element.animate({
-			left:(-width)
-		},10000,function(){
-			dtd.resolve();
-		})
 
+		setTimeout(function(){
+
+				element.animate({
+				left:(-width)
+			},time,function(){
+				dtd.resolve();
+			})
+		},delayTime);
+		
 		return dtd;
 	}
 

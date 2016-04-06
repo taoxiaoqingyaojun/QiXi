@@ -41,6 +41,26 @@ var boys = {
 			left:this.calculateDist('x',0.5)
 		})
 	},
+	/*让小男孩垂直走起来*/
+	boyStartVerticalRun:function(time,delayTime){
+
+		var dtd = $.Deferred();
+
+
+		setTimeout(function(){
+
+			boy.animate({
+				top:'23%'
+			},time,function(){
+
+				dtd.resolve();
+			})
+
+		},delayTime);
+
+		return dtd;
+		
+	},
 	/*男孩开始摆动*/
 	boyStartVibrate:function(){
 
